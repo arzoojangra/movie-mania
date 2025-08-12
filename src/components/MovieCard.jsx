@@ -1,10 +1,19 @@
 import React from "react";
 
 const MovieCard = ({
-  movie: { title, poster_path, release_date, vote_average, original_language },
+  movie: {
+    title,
+    poster_path,
+    release_date,
+    vote_average,
+    original_language,
+    overview,
+  },
+  onMovieClick,
+  movie,
 }) => {
   return (
-    <div className="movie-card">
+    <div className="movie-card" onClick={() => onMovieClick(movie)}>
       <img
         src={
           poster_path
@@ -27,6 +36,7 @@ const MovieCard = ({
             {release_date ? release_date.split("-")[0] : "N/A"}
           </p>
         </div>
+        <div className="overview">{overview}</div>
       </div>
     </div>
   );
