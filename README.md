@@ -226,10 +226,6 @@ npm run lint         # Run ESLint
 - Add proper error handling
 - Test on multiple devices and browsers
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🙏 Acknowledgments
 
 - **TMDB** for providing the movie database API
@@ -247,6 +243,6 @@ If you have any questions or need help:
 
 ---
 
-**Made with ❤️ by [Your Name]**
+**Made with ❤️ by Arzoo Jangra**
 
 *Discover your next favorite movie with Movie Mania! 🎬✨*
