@@ -102,14 +102,7 @@
   }
 
   .movie-card {
-    @apply bg-dark-100 p-5 rounded-2xl shadow-inner shadow-light-100/10;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .movie-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    @apply bg-dark-100 p-5 rounded-2xl shadow-inner shadow-light-100/10 cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)];
   }
 
   .movie-card img {
@@ -149,11 +142,7 @@
   }
 
   .movie-card .overview {
-    @apply text-gray-100 font-medium text-base text-justify;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    @apply text-gray-100 font-medium text-base text-justify overflow-hidden line-clamp-3;
   }
 }
 
@@ -178,248 +167,155 @@
 
 /* Movie Detail Modal Styles */
 .movie-detail-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(3, 0, 20, 0.95);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10000;
-  padding: 20px;
-  backdrop-filter: blur(5px);
+  @apply fixed inset-0 bg-primary/95 flex items-center justify-center z-[10000] p-5 backdrop-blur;
 }
 
 /* Prevent body scroll when modal is open */
 body.modal-open {
-  overflow: hidden;
-  padding-right: 15px; /* Prevent layout shift */
+  @apply overflow-hidden pr-[15px];
 }
 
 .movie-detail-modal {
-  background: var(--color-dark-100);
-  border-radius: 20px;
-  max-width: 900px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  border: 1px solid rgba(206, 206, 251, 0.1);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  @apply bg-dark-100 rounded-2xl max-w-[900px] w-full max-h-[90vh] overflow-y-auto relative border border-light-100/10 shadow-2xl;
 }
 
 .close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: rgba(206, 206, 251, 0.1);
-  border: none;
-  color: var(--color-light-100);
-  font-size: 24px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  z-index: 10;
+  @apply absolute top-5 right-5 bg-light-100/10 text-light-100 text-2xl w-10 h-10 rounded-full cursor-pointer flex items-center justify-center transition-all duration-300 z-10;
 }
 
 .close-btn:hover {
-  background: rgba(206, 206, 251, 0.2);
-  transform: scale(1.1);
+  @apply bg-light-100/20 scale-110;
 }
 
 .movie-detail-content {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 30px;
-  padding: 40px;
+  @apply grid [grid-template-columns:300px_1fr] gap-8 p-10;
 }
 
 .movie-detail-poster img {
-  width: 100%;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  @apply w-full h-auto rounded-[15px] shadow-xl;
 }
 
 .movie-detail-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 20px;
-  line-height: 1.2;
+  @apply text-[2.5rem] font-bold text-white mb-5 leading-tight;
 }
 
 .movie-detail-meta {
-  margin-bottom: 30px;
+  @apply mb-8;
 }
 
 .rating-large {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
+  @apply flex items-center gap-3 mb-4;
 }
 
 .rating-large img {
-  width: 24px;
-  height: 24px;
+  @apply w-6 h-6;
 }
 
 .rating-large span {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: white;
+  @apply text-2xl font-semibold text-white;
 }
 
 .vote-count {
-  font-size: 1rem;
-  color: var(--color-gray-100);
-  font-weight: 400;
+  @apply text-base text-gray-100 font-normal;
 }
 
 .meta-details {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  @apply flex flex-wrap gap-4;
 }
 
 .meta-details span {
-  background: rgba(206, 206, 251, 0.1);
-  padding: 8px 16px;
-  border-radius: 20px;
-  color: var(--color-light-100);
-  font-size: 0.9rem;
-  font-weight: 500;
+  @apply bg-light-100/10 px-4 py-2 rounded-full text-light-100 text-sm font-medium;
 }
 
 .movie-detail-overview {
-  margin-bottom: 30px;
+  @apply mb-8;
 }
 
 .movie-detail-overview h3 {
-  color: white;
-  font-size: 1.3rem;
-  margin-bottom: 15px;
-  font-weight: 600;
+  @apply text-white text-xl mb-4 font-semibold;
 }
 
 .movie-detail-overview p {
-  color: var(--color-gray-100);
-  line-height: 1.6;
-  font-size: 1rem;
+  @apply text-gray-100 leading-relaxed text-base;
 }
 
 .production-companies,
 .spoken-languages,
 .financial-info {
-  margin-bottom: 25px;
+  @apply mb-6;
 }
 
 .production-companies h3,
 .spoken-languages h3,
 .financial-info h3 {
-  color: white;
-  font-size: 1.1rem;
-  margin-bottom: 12px;
-  font-weight: 600;
+  @apply text-white text-lg mb-3 font-semibold;
 }
 
 .company-list,
 .language-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  @apply flex flex-wrap gap-3;
 }
 
 .company-tag,
 .language-tag {
-  background: rgba(206, 206, 251, 0.1);
-  padding: 6px 12px;
-  border-radius: 15px;
-  color: var(--color-light-100);
-  font-size: 0.85rem;
-  font-weight: 500;
+  @apply bg-light-100/10 px-3 py-1.5 rounded-full text-light-100 text-sm font-medium;
 }
 
 .financial-details {
-  display: flex;
-  gap: 30px;
+  @apply flex gap-8;
 }
 
 .budget,
 .revenue {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+  @apply flex flex-col gap-2;
 }
 
 .budget .label,
 .revenue .label {
-  color: var(--color-gray-100);
-  font-size: 0.9rem;
+  @apply text-gray-100 text-sm;
 }
 
 .budget .value,
 .revenue .value {
-  color: var(--color-light-100);
-  font-size: 1.1rem;
-  font-weight: 600;
+  @apply text-light-100 text-lg font-semibold;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .movie-detail-content {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 20px;
+    @apply grid-cols-1 gap-5 p-5;
   }
 
   .movie-detail-poster {
-    max-width: 250px;
-    margin: 0 auto;
+    @apply max-w-[250px] mx-auto;
   }
 
   .movie-detail-title {
-    font-size: 2rem;
+    @apply text-2xl;
   }
 
   .financial-details {
-    flex-direction: column;
-    gap: 15px;
+    @apply flex-col gap-4;
   }
 }
 
 /* Loading More Indicator */
 .loading-more {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-  margin-top: 20px;
+  @apply flex flex-col items-center justify-center p-10 mt-5;
 }
 
 .loading-more p {
-  color: var(--color-gray-100);
-  font-size: 0.9rem;
-  margin-top: 15px;
+  @apply text-gray-100 text-sm mt-4;
 }
 
 /* Smooth scrolling for better infinite scroll experience */
 html {
-  scroll-behavior: smooth;
+  @apply scroll-smooth;
 }
 
 /* Ensure movies container can handle dynamic content */
 .movies-container {
-  min-height: 200px;
+  @apply min-h-[200px];
 }
 
 /* Optimize list rendering for infinite scroll */

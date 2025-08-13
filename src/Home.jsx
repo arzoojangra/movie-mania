@@ -4,8 +4,8 @@ import Search from "./components/Search";
 import Spinner from "./components/Spinner";
 import MovieCard from "./components/MovieCard";
 import MovieDetail from "./components/MovieDetail";
-import { useDebounce } from "react-use";
 import { getTrendingMovies, updateSearchCount } from "./appwrite";
+import { useDebounce } from "./hooks/useDebounce";
 
 const API_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -19,7 +19,6 @@ const API_OPTIONS = {
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
 
   const [movies, setMovies] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
@@ -31,10 +30,9 @@ const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  const observerRef = useRef();
-  const lastMovieRef = useRef();
+  const debouncedValue = useDebounce(searchTerm, 600);
 
-  useDebounce(() => setDebouncedSearchTerm(searchTerm), 600, [searchTerm]);
+  const observerRef = useRef();
 
   const fetchMovies = async (query = "", pageNum = 1, append = false) => {
     try {
@@ -90,9 +88,9 @@ const Home = () => {
     if (!isLoadingMore && hasMore && !isLoading) {
       const nextPage = page + 1;
       setPage(nextPage);
-      fetchMovies(debouncedSearchTerm, nextPage, true);
+      fetchMovies(debouncedValue, nextPage, true);
     }
-  }, [isLoadingMore, hasMore, isLoading, page, debouncedSearchTerm]);
+  }, [isLoadingMore, hasMore, isLoading, page, debouncedValue]);
 
   // Intersection Observer for infinite scroll
   const lastMovieElementRef = useCallback(
@@ -129,12 +127,12 @@ const Home = () => {
     setSelectedMovie(null);
   };
 
-  // Reset pagination when search term changes
+  // Reset pagination when debounced search term changes
   useEffect(() => {
     setPage(1);
     setHasMore(true);
-    fetchMovies(debouncedSearchTerm, 1, false);
-  }, [debouncedSearchTerm]);
+    fetchMovies(debouncedValue, 1, false);
+  }, [debouncedValue]);
 
   useEffect(() => {
     loadTrendingMovies();
