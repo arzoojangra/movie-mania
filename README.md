@@ -42,8 +42,8 @@ A modern, responsive movie discovery application built with React and Vite, feat
 
 ### Development Tools
 - **ESLint** - Code quality and consistency
-- **React Hooks** - useState, useEffect, useCallback, useRef
-- **Custom Hooks** - useDebounce for search optimization
+- **React Hooks** - useState, useEffect
+- **Custom Hooks** - useDebounce from react-use package for search optimization
 
 ## 🚀 Getting Started
 
